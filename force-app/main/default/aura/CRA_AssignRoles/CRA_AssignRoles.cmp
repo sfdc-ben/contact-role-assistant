@@ -1,0 +1,58 @@
+<aura:component implements="lightning:availableForFlowScreens" controller="rolePicklistController" access="global">
+	<aura:attribute name="rolePicklist" type="String[]" />
+    <aura:attribute name="contactsAdded" type="Contact[]"/>
+    <aura:attribute name="searchedContacts" type="Contact[]"/>
+    <aura:attribute name="opportunity" type="String"/>
+    <aura:attribute name="opportunityContacts" type="OpportunityContactRole[]"/>
+    <aura:attribute name="opportunityContact" type="OpportunityContactRole" 
+                    default="{'ContactId':'','OpportunityId':'', 'Role':'', 'Name':''}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c.CRA_RemoveContactEvent"
+                  action="{!c.handleRemoveContact}"/>
+    
+    <div class="slds-m-bottom_small slds-m-top_small slds-m-left_x-small">
+    <div class="slds-m-bottom_small">
+        <div class="slds-media slds-m-bottom_x-small">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="utility:dynamic_record_choice" size="small"></lightning:icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-m-bottom_x-small slds-text-heading_medium">Assign Contact Roles</div>
+            </div>
+            <div class="slds-media__figure slds-media__figure_reverse"></div>
+        </div>
+        <table class="slds-table slds-table_bordered slds-table_striped">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th>
+                        <div class="slds-truncate" title="Column 1">Name</div>
+                    </th>
+                    <th>
+                        <div class="slds-truncate" title="Column 1">Role</div>
+                    </th>
+                    <th>
+                        <div class="slds-truncate" title="Column 1">Remove</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <aura:if isTrue="{!v.opportunityContacts.length == 0}">
+            	<div class="slds-p-around_x-small">
+    				<div class="slds-text-align_center" style="font-size: 0.75rem;"><i>You haven't added any contacts to this opportunity. No changes will be applied.</i></div>
+				</div>
+                
+                <aura:set attribute="else">
+                <aura:iteration items="{!v.opportunityContacts}" var="oppContact" indexVar="i">
+                	<c:CRA_ContactRow oppContact="{!oppContact}" index="{!i}" rolePicklist="{!v.rolePicklist}"/>
+
+                </aura:iteration>
+                    
+                </aura:set>
+            	</aura:if>
+            </tbody>
+        </table>
+    </div>
+</div>
+</aura:component>

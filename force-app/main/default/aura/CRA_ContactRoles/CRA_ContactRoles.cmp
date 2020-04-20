@@ -1,0 +1,50 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+    <aura:attribute name="activeContacts" type="OpportunityContactRole[]"/>
+    <aura:attribute name="contactToRemove" type="String"/>
+    <aura:attribute name="removeIndicator" type="Boolean"/>
+    <aura:attribute name="flowStep" type="String" default="NEXT"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c.CRA_RoleRemoveEvent"
+                  action="{!c.handleRemoveRole}"/>
+    
+    <div class="slds-m-top_small slds-m-left_x-small">
+    <div class="slds-media slds-m-bottom_x-small">
+        <div class="slds-media__figure">
+            <lightning:icon iconName="utility:people" size="small"></lightning:icon>
+        </div>
+        <div class="slds-media__body">
+            <div class="slds-m-bottom_x-small slds-text-heading_medium">Existing Contact Roles</div>
+        </div>
+        <div class="slds-media__figure slds-media__figure_reverse"></div>
+    </div>
+    <table class="slds-table slds-table_bordered slds-table_striped">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th>
+                    <div class="slds-truncate" title="Column 1">Name</div>
+                </th>
+                <th>
+                    <div class="slds-truncate" title="Column 1">Role</div>
+                </th>
+                <th>
+                    <div class="slds-truncate" title="Column 1"></div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:if isTrue="{!v.activeContacts.length == 0}">
+            	<div class="slds-p-around_x-small">
+    				<div class="slds-text-align_center" style="font-size: 0.75rem;"><i>There are no Contact Roles on this Opportunity yet. Click 'Find More Contacts' to add some.</i></div>
+				</div>
+                
+                <aura:set attribute="else">
+                    <aura:iteration items="{!v.activeContacts}" var="actContact" indexVar="i">
+                		<c:CRA_RoleRow actContact="{!actContact}" index="{!i}"/>
+                	</aura:iteration>
+                </aura:set>
+            </aura:if>
+        </tbody>
+    </table>
+	</div>
+</aura:component>

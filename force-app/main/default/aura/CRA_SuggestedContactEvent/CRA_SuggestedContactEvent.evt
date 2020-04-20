@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template">
+	<aura:attribute name="sugContactId" type="String"/>
+    <aura:attribute name="sugContactName" type="String"/>
+    <aura:attribute name="addToSelectedList" type="Boolean"/>
+</aura:event>

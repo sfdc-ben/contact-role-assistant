@@ -1,0 +1,35 @@
+<aura:component access="global">
+	<aura:attribute name="actContact" type="OpportunityContactRole" 
+                    default="{'Id':'', 'ContactId':'', 'Role':'', 'IsPrimary':''}"/>
+    <aura:attribute name="oppContactRole" type="Object"/>
+    <aura:attribute name="index" type="Decimal"/>
+    <aura:attribute name="contactRecord" type="Object"/>
+    <force:recordData aura:id="contactService"
+    	recordId="{!v.actContact.ContactId}"
+        fields="Name,LastActivityDate"
+        targetFields="{!v.contactRecord}" />
+    <force:recordData aura:id="oppContactService"
+    	recordId="{!v.actContact.Id}"
+        fields="Role,IsPrimary"
+        targetFields="{!v.oppContactRole}" />
+    <aura:registerEvent name="removeRole" type="c.CRA_RoleRemoveEvent"/>
+    <aura:registerEvent name="editRole" type="c.CRA_RoleEditEvent"/>
+    
+    
+    <tr class="slds-hint-parent">
+                <td><a href="{!'/lightning/r/Contact/'+ v.actContact.ContactId + '/view'}" class=" slds-text-link">{!v.contactRecord.Name}</a>
+        		<aura:if isTrue="{!v.actContact.IsPrimary}">
+                	<span class="slds-badge slds-badge_lightest slds-m-left_small"><lightning:icon iconName="utility:topic" size="xx-small"></lightning:icon> Primary</span>
+                </aura:if>
+        		</td>
+                <td>
+                    <div class="slds-text-title slds-text-color_default">{!v.actContact.Role}</div>
+                </td>
+        		<td>
+                <lightning:buttonMenu variant="border-filled" menuAlignment="right" iconName="utility:down" iconSize="x-small">
+                    <lightning:menuItem label="Edit Contact Role" onactive="{!c.onEditClick}"></lightning:menuItem>
+                    <lightning:menuItem label="Remove Contact Role" onactive="{!c.onRemoveClick}"></lightning:menuItem>
+                </lightning:buttonMenu>
+            </td>
+            </tr>
+</aura:component>

@@ -1,0 +1,73 @@
+<aura:component implements="lightning:availableForFlowScreens" controller="contactMultiSearchController" access="global">
+    <aura:attribute name="lstSelectedRecords" type="Contact[]" default="[]" description="Use,for store SELECTED sObject Records"/>
+    <aura:attribute name="listOfSearchRecords" type="List" description="Use,for store the list of search records which returns from apex class"/>
+    <aura:attribute name="SearchKeyWord" type="string"/>
+    <aura:attribute name="objectAPIName" type="string" default="Contact"/>
+    
+    <aura:handler name="selectedContactEvent" event="c:CRA_SelectedContactEvent" action="{!c.handleSelectedContact}"/>
+    <aura:attribute name="Message" type="String" default="Waiting..."/>
+    
+	<div class="slds-m-bottom_small slds-m-top_small slds-m-left_x-small">
+    <div class="slds-m-bottom_small">
+        <div class="slds-media slds-m-bottom_x-small">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="utility:search" size="small"></lightning:icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-m-bottom_x-small slds-text-heading_medium">Find Additional Contacts</div>
+            </div>
+            <div class="slds-media__figure slds-media__figure_reverse"></div>
+        </div>
+        
+        
+        
+        <div class="slds-p-around_small slds-p-top_small slds-p-right_small slds-p-bottom_small slds-p-left_small slds-theme_shade">
+            
+            
+            <div onmouseleave="{!c.onblur}" aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close"> 
+        			<div class="slds-form-element__control">
+            	<div class="slds-input-has-icon slds-input-has-icon--right">
+                <div aura:id="lookup-pill" class="slds-pill-container">
+                    <div aura:id="lookupField" class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"  style="width: 100%;">
+                        
+                        <ui:inputText click="{!c.onfocus}"
+                                      updateOn="keyup"
+                                      keyup="{!c.keyPressController}"
+                                      class="slds-lookup__search-input slds-input inputSize"
+                                      value="{!v.SearchKeyWord}"
+                                      placeholder="Search Salesforce..."/>
+                        
+                        <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            <lightning:icon iconName="utility:search" size="x-small" alternativeText="icon"/>
+                        </span>
+                    </div> 
+                    <aura:iteration items="{!v.lstSelectedRecords}" var="sr">
+                        <lightning:pill class="slds-m-around_xx-small" label="{!sr.Name}" name="{!sr.Id}" onremove="{! c.clear }">
+                            <aura:set attribute="media">
+                                <lightning:icon iconName="standard:contact" size="x-small" alternativeText="icon"/>
+                            </aura:set>
+                        </lightning:pill>
+                    </aura:iteration>
+                </div>
+            </div>
+        </div>
+        <ul style="min-height:40px;margin-top:0px !important" class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid slds-lookup__menu slds" role="listbox">
+            <lightning:spinner class="slds-hide" variant="brand" size="small" aura:id="mySpinner"/>
+            <center>{!v.Message}</center>
+            <aura:iteration items="{!v.listOfSearchRecords}" var="singleRec"> 
+                <c:CRA_SearchResults contactRecord="{!singleRec}"/>
+            </aura:iteration>
+        </ul>
+    	</div>
+        </div>
+        
+        
+        
+    </div>
+	</div>
+    
+    
+
+    
+    
+</aura:component>

@@ -1,0 +1,6 @@
+<design:component>
+	<design:attribute name="contactsAdded" label="List of Selected Contacts (Input Only)"/>
+    <design:attribute name="searchedContacts" label="List of Searched Contacts (Input Only)"/>
+    <design:attribute name="opportunity" label="Opportunity (Input Only)"/>
+    <design:attribute name="opportunityContacts" label="Opportunity Contact Roles (Output Only)"/>
+</design:component>

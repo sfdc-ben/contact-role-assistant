@@ -1,0 +1,21 @@
+<aura:component access="global">
+    <aura:attribute name="oppContact" type="OpportunityContactRole" 
+                    default="{'ContactId':'', 'Role':'', Name:''}"/>
+    <aura:attribute name="rolePicklist" type="String[]"/>
+    <aura:attribute name="index" type="Decimal"/>
+    <aura:registerEvent name="removeContact" type="c.CRA_RemoveContactEvent"/>
+    
+    <tr class="slds-hint-parent">
+                    <td><a href="{!'/lightning/r/Contact/'+ v.oppContact.ContactId + '/view'}" class=" slds-text-link">{!v.oppContact.Name}</a></td>
+                    <td>
+                        <lightning:select aura:id="select" label="Opportunity Role" value="{!v.oppContact.Role}">
+                            <aura:iteration items="{!v.rolePicklist}" var="val">
+            					<option value="{!val}"> {!val}</option>
+        						</aura:iteration>
+                        </lightning:select>
+                    </td>
+                    <td>
+                        <lightning:buttonIcon alternativeText="" iconClass="" variant="border-filled" type="button" iconName="utility:close" size="small" onclick="{!c.onRemoveClick}"></lightning:buttonIcon>
+                    </td>
+                </tr>
+</aura:component>

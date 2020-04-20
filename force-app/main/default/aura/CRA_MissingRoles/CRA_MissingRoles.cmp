@@ -1,0 +1,52 @@
+<aura:component implements="lightning:availableForFlowScreens" controller="rolePicklistController" access="global">
+	<aura:attribute name="activeContacts" type="OpportunityContactRole[]"/>
+    <aura:attribute name="rolePicklist" type="String[]"/>
+    <aura:attribute name="activeRoles" type="String[]"/>
+    <aura:attribute name="missingRoles" type="String[]"/>
+    <aura:attribute name="missingRolesLen" type="Integer"/>
+    <aura:attribute name="reminderMessage" type="String" default="Elimiate risk by ensuring you have appropriate contact roles."/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:handler event="c.CRA_RoleEditEvent"
+                  action="{!c.doInit}"/>
+    
+    <aura:if isTrue="{! (v.missingRoles.length >0) }">
+        <div class="slds-m-top_small slds-m-bottom_x-small slds-m-left_x-small">
+        
+        <div class="slds-media slds-m-bottom_x-small">
+        <div class="slds-media__figure">
+            <lightning:icon iconName="utility:einstein" size="small"></lightning:icon>
+        </div>
+        <div class="slds-media__body">
+            <div class="slds-m-bottom_x-small slds-text-heading_medium">Missing Contact Roles</div>
+        </div>
+        <div class="slds-media__figure slds-media__figure_reverse"></div>
+    	</div>
+        
+    <aura:iteration items="{!v.missingRoles}" var="msgRole">
+        <div class="slds-media slds-m-bottom_xx-small slds-media_center">
+        <div class="slds-media__figure">
+            <lightning:icon iconName="utility:right" size="xx-small"></lightning:icon>
+        </div>
+        <div class="slds-media__body">
+            <div style="font-size: 0.8125rem;"><b>{!msgRole}</b></div>
+        </div>
+        <div class="slds-media__figure slds-media__figure_reverse"></div>
+    	</div>
+    </aura:iteration>
+        
+        
+    <div class="slds-media slds-m-top_x-small slds-media_center">
+        <div class="slds-media__figure">
+            <lightning:dynamicIcon type="ellie"></lightning:dynamicIcon>
+        </div>
+        <div class="slds-media__body">
+            <div style="color: rgb(107, 109, 112); font-size: 0.75rem;">{!v.reminderMessage}</div>
+        </div>
+        <div class="slds-media__figure slds-media__figure_reverse"></div>
+    </div>
+            
+	</div>
+        </aura:if>
+</aura:component>

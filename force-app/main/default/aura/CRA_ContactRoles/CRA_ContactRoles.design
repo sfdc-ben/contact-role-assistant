@@ -1,0 +1,5 @@
+<design:component>
+	<design:attribute name="activeContacts" label="List of Contact Roles on Opportunities (Input Only)"/>
+    <design:attribute name="contactToRemove" label="Contact Role to be Removed (Output Only)"/>
+    <design:attribute name="removeIndicator" label="Remove Contact Role Decision Indicator (Output Only)"/>
+</design:component>

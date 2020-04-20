@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event template">
+	<aura:attribute name="contactToRemove" type="String"/>
+    <aura:attribute name="removeIndicator" type="Boolean"/>
+</aura:event>

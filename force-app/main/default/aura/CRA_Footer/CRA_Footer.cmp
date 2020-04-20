@@ -1,0 +1,41 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+	<aura:attribute name="buttonText" type="String" default=""/>
+    <aura:attribute name="buttonIcon" type="String" default=""/>
+    <aura:attribute name="buttonText2" type="String" default=""/>
+    <aura:attribute name="buttonIcon2" type="String" default=""/>
+    <aura:attribute name="flowStep" type="String" default="NEXT"/>
+    <aura:attribute name="buttonCondition" type="Integer"/>
+    <aura:attribute name="refreshAllowed" type="Boolean" default="false"/>
+    <aura:attribute name="refreshIndicator" type="Boolean"/>
+    
+    <aura:handler event="c.CRA_ContactLengthEvent"
+                  action="{!c.handleLengthEvent}"/>
+    
+    <div class="slds-p-around_small slds-p-top_small slds-p-right_small slds-p-bottom_small slds-p-left_small">
+    <aura:if isTrue="{!v.buttonCondition}">
+        <div class="slds-media">
+        <div class="slds-media__figure"></div>
+        <div class="slds-media__body"></div>
+        <div class="slds-media__figure slds-media__figure_reverse">
+            <aura:if isTrue="{!v.refreshAllowed}">
+            <lightning:buttonIcon class="slds-theme_shade" alternativeText="" iconClass="" variant="border" type="button" iconName="utility:loop" size="medium" onclick="{!c.refreshFlow}"></lightning:buttonIcon>
+            </aura:if>
+            <lightning:button class="slds-theme_brand" iconPosition="left" variant="brand" type="button" label="{!v.buttonText2}" iconName="{!v.buttonIcon2}" onclick="{!c.FlowNavigate}"></lightning:button>
+        	</div>
+    	</div>
+    <aura:set attribute="else">
+        <div class="slds-media">
+        <div class="slds-media__figure"></div>
+        <div class="slds-media__body"></div>
+        <div class="slds-media__figure slds-media__figure_reverse">
+            <aura:if isTrue="{!v.refreshAllowed}">
+            <lightning:buttonIcon class="slds-theme_shade" alternativeText="" iconClass="" variant="border" type="button" iconName="utility:loop" size="medium" onclick="{!c.refreshFlow}"></lightning:buttonIcon>        
+            </aura:if>
+            <lightning:button class="slds-theme_brand" iconPosition="left" variant="brand" type="button" label="{!v.buttonText}" iconName="{!v.buttonIcon}" onclick="{!c.FlowNavigate}"></lightning:button>
+            </div>
+    	</div>
+    </aura:set>
+    </aura:if> 
+	</div>
+        
+</aura:component>

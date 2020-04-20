@@ -1,0 +1,14 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+	<div>
+    <div class="slds-media slds-p-top_x-small slds-p-right_small slds-p-bottom_small slds-border_bottom">
+        <div class="slds-media__figure">
+            <lightning:icon iconName="standard:portal_roles" size="slds-icon_medium" variant="inverse"></lightning:icon>
+        </div>
+        <div class="slds-media__body">
+            <div class="slds-text-title slds-text-color_default">Contact Role Assistant</div>
+            <div class="slds-m-bottom_none slds-p-around_none slds-p-top_none slds-p-right_none slds-p-bottom_none slds-p-left_none slds-text-align_left slds-text-heading_small">Opportunity Contact Roles</div>
+        </div>
+        <div class="slds-media__figure slds-media__figure_reverse"></div>
+    </div>
+</div>
+</aura:component>

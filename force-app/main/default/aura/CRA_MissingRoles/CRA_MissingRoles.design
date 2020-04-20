@@ -1,0 +1,4 @@
+<design:component>
+	<design:attribute name="activeContacts" label="List of Contact Roles on Opportunities (Input Only)"/>
+    <design:attribute name="reminderMessage" label="Message to Users About Missing Roles"/>
+</design:component>

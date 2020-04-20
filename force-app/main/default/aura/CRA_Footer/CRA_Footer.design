@@ -1,0 +1,10 @@
+<design:component>
+    <design:attribute name="buttonIcon" label="Icon (Utility) - Condition 1"/>
+    <design:attribute name="buttonText" label="Button Action Text - Condition 1"/>
+    <design:attribute name="buttonIcon2" label="Icon (Utility) - Condition 2"/>
+    <design:attribute name="buttonText2" label="Button Action Text - Condition 2"/>
+    <design:attribute name="flowStep" label="Flow Navigation" datasource="NEXT,FINISH"/>
+    <design:attribute name="buttonCondition" label="Button Condition (Input Only)"/>
+    <design:attribute name="refreshIndicator" label="Activate Refresh of Flow (Output Only)"/>
+    <design:attribute name="refreshAllowed" label="Allow Refresh of Flow (Input Only)"/>
+</design:component>

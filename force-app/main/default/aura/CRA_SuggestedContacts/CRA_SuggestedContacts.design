@@ -1,0 +1,5 @@
+<design:component>
+	<design:attribute name="accountContacts" label="List of Contacts on Account (Input Only)"/>
+    <design:attribute name="contactsSelected" label="List of Contacts Selected for Contact Roles (Output Only)"/>
+    <design:attribute name="selectedRowsCount" label="Number of Contacts Selected (Output Only)"/>
+</design:component>

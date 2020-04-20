@@ -1,0 +1,40 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+	<aura:attribute name="accountContacts" type="Contact[]"/>
+    <aura:attribute name="contactsSelected" type="Contact[]"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:registerEvent name="selectContact" type="c.CRA_ContactLengthEvent"/>
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <div class="slds-m-bottom_small slds-m-top_small slds-m-left_x-small">
+    <div class="slds-m-bottom_small">
+        <div class="slds-media slds-m-bottom_x-small">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="utility:einstein" size="small"></lightning:icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-m-bottom_x-small slds-text-heading_medium">Suggested Contacts</div>
+            </div>
+            <div class="slds-media__figure slds-media__figure_reverse"></div>
+        </div>
+        
+        <div>
+        <aura:if isTrue="{!v.accountContacts.length == 0}">
+            <div class="slds-p-around_x-small">
+    			<div class="slds-text-align_center" style="font-size: 0.75rem;"><i>Looks like there has been no activity with contacts on this account. Continue to search for other contacts to add.</i></div>
+			</div>
+                
+        <aura:set attribute="else">
+        <lightning:datatable
+            class="table-test"
+            columns="{!v.columns}"
+            data="{!v.accountContacts}"                 
+            keyField="Id"
+            onrowselection="{!c.getSelectedName}"/> 
+        </aura:set>
+        </aura:if>
+    </div>  
+    </div>
+	</div>
+</aura:component>

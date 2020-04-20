@@ -1,0 +1,3 @@
+<design:component>
+	<design:attribute name="lstSelectedRecords" label="Added Contacts (Output Only)"/>
+</design:component>
